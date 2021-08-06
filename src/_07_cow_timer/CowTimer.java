@@ -7,6 +7,7 @@ package _07_cow_timer;
 import java.applet.AudioClip;
 import java.io.IOException;
 import javax.swing.JApplet;
+import javax.swing.JOptionPane;
 
 public class CowTimer {
 
@@ -14,6 +15,11 @@ public class CowTimer {
 	 * 1. Make a constructor for the CowTimer class that initializes the minutes
 	 * variable
 	 */
+	CowTimer(int min){
+		this.minutes=min;
+		System.out.println("Cow time set to " + min + " minutes.");
+		
+	}
 
 	/* 4. Complete the main method of the CowTimerRunner class */
 
@@ -30,17 +36,28 @@ public class CowTimer {
 		 * of minutes using Thread.sleep(int milliseconds).
 		 */
 
+for(int i=minutes; i>0; i--) {
+	minutes = minutes-1;
+	Thread.sleep(1000);
+	System.out.println(i);
+}
+	
 		/*
 		 * 3. When the timer is finished, use the playSound method to play a moo sound.
 		 * You can use the .wav file in the default package, or you can download one
 		 * from freesound.org, then drag it intothe default package.
 		 */
-
+	if(minutes == 0) {
+		playSound("moo.mav");
+	}
+	
 	}
 
 	private void playSound(String fileName) {
 		AudioClip sound = JApplet.newAudioClip(getClass().getResource(fileName));
 		sound.play();
+		System.out.println("moo");
+		speak("moo");
 	}
 
 	static void speak(String words) {
